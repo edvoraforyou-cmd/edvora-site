@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Subjects | Edvora</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    h2 {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      padding: 20px;
+    }
+
+    .card {
+      padding: 20px;
+      background: #eef2ff;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+      text-decoration: none;
+      color: #000;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2 id="title">Loading...</h2>
+  <div class="grid" id="subjects"></div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const selectedClass = params.get("class");
+
+    const subjectMap = {
+      "6": ["Maths", "Science", "SST", "English", "Hindi"],
+      "7": ["Maths", "Science", "SST", "English", "Hindi"],
+      "8": ["Maths", "Science", "SST", "English", "Hindi"],
+      "9": ["Maths", "Science", "SST", "English", "Hindi"],
+      "10": ["Maths", "Science", "SST", "English", "Hindi"],
+      "11": ["Physics", "Chemistry", "Maths", "Biology"],
+      "12": ["Physics", "Chemistry", "Maths", "Biology"]
+    };
+
+    const title = document.getElementById("title");
+    const box = document.getElementById("subjects");
+
+    if (!selectedClass) {
+      title.innerText = "Class parameter missing";
+    } else if (!subjectMap[selectedClass]) {
+      title.innerText = "No subjects for Class " + selectedClass;
+    } else {
+      title.innerText = "Class " + selectedClass + " Subjects";
+
+      subjectMap[selectedClass].forEach(sub => {
+        const a = document.createElement("a");
+        a.className = "card";
+        a.href = `chapters.html?class=${selectedClass}&subject=${encodeURIComponent(sub)}`;
+        a.innerText = sub;
+        box.appendChild(a);
+      });
+    }
+  </script>
+
+</body>
+</html>
