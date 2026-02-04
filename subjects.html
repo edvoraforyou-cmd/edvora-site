@@ -1,0 +1,51 @@
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const selectedClass = params.get("class");
+
+  const subjectMap = {
+    6: ["Maths", "Science", "SST", "English", "Hindi", "Computer"],
+    7: ["Maths", "Science", "SST", "English", "Hindi", "Computer"],
+    8: ["Maths", "Science", "SST", "English", "Hindi", "Computer"],
+    9: ["Maths", "Science", "SST", "English", "Hindi", "Computer"],
+    10: ["Maths", "Science", "SST", "English", "Hindi", "Computer"],
+
+    11: [
+      "Physics",
+      "Chemistry",
+      "Maths",
+      "Biology",
+      "English",
+      "Computer Science",
+      "Physical Education",
+      "Economics",
+      "Accountancy",
+      "Business Studies"
+    ],
+
+    12: [
+      "Physics",
+      "Chemistry",
+      "Maths",
+      "Biology",
+      "English",
+      "Computer Science",
+      "Physical Education",
+      "Economics",
+      "Accountancy",
+      "Business Studies"
+    ]
+  };
+
+  document.getElementById("title").innerText =
+    "Class " + selectedClass + " Subjects";
+
+  const container = document.getElementById("subjects");
+
+  subjectMap[selectedClass].forEach(subject => {
+    const a = document.createElement("a");
+    a.className = "card";
+    a.href = `chapters.html?class=${selectedClass}&subject=${subject}`;
+    a.innerText = subject;
+    container.appendChild(a);
+  });
+</script>
